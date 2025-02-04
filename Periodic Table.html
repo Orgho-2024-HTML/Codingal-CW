@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Periodic Table</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: aliceblue;
+        }
+        .container{
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 10px black;
+        }
+        .table{
+            display: grid;
+            grid-template-columns: repeat(18, 1fr);
+            gap: 5px;
+            justify-content: center;
+            padding: 10px;
+        }
+        .element{
+            background: blueviolet;
+            color: white;
+            padding: 10px;
+            font-size: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .element:hover{
+            background-color: blue;
+        }
+        #details{
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Periodic-Table</h2>
+        <div class="table" id="periodictable"></div>
+        <p id="details">Click an element to get the details</p>
+    </div>
+
+    <script>
+        const elements = [
+            {symbol: "H", name: "Hydrogen", atomicNumber: 1},
+            {symbol: "He", name: "Helium", atomicNumber: 2},
+        ];
+        function loadTable(){
+            let table = document.getElementById("periodictable");
+            elements.forEach(element => {
+                let div = document.createElement("div");
+                div.className="element";
+                div.onclick=()=> showDetails(element);
+                table.appendChild(div);
+            });
+        }
+        function showDetails(element){
+            document.getElementById("details").innerHTML=Element: ${element.name} (Symbol: ${element.symbol}), Atomic Number: ${element.atomicNumber};
+        }
+        window.onload = loadTable;
+    </script>
+</body>
+</html>
